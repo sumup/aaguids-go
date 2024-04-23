@@ -6,11 +6,13 @@ Small package mapping AAGUIDs (Authenticator Attestation Global Unique Identifie
 package main
 
 import (
+  "fmt"
+
   "github.com/sumup/aaguids-go"
 )
 
 func main() {
-  metadata, _ := aaguid.Passkeys["fbfc3007-154e-4ecc-8c0b-6e020557d7bd"]
+  metadata, _ := aaguid.GetMetadata("fbfc3007-154e-4ecc-8c0b-6e020557d7bd")
   fmt.Println(metadata.Name)
 }
 ```

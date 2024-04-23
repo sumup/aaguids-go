@@ -1,12 +1,28 @@
 package aaguids
 
+import "fmt"
+
 var (
-	// Passkeys are passkey provider AAGUIDs.
+	ErrNotFound = fmt.Errorf("not found")
+)
+
+// GetMetadata returns [Metadata] for requested aaguid.
+func GetMetadata(aaguid string) (*Metadata, error) {
+	metadata, ok := passkeys[aaguid]
+	if !ok {
+		return nil, ErrNotFound
+	}
+
+	return &metadata, nil
+}
+
+var (
+	// passkeys are passkey provider AAGUIDs.
 	// This list is based on https://github.com/passkeydeveloper/passkey-authenticator-aaguids, it is community driven,
 	// and might miss certain AAGUIDs from the official metadata file (https://fidoalliance.org/metadata/).
 	// On the other hand, some commonly used Passkey Providers absent from the official metadata file are included
 	// here.
-	Passkeys = map[string]Metadata{
+	passkeys = map[string]Metadata{
 		"ea9b8d66-4d01-1d21-3ce4-b6b48cb575d4": {
 			Name:      "Google Password Manager",
 			IconDark:  "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDE5MiAxOTIiIGhlaWdodD0iMjRweCIgdmlld0JveD0iMCAwIDE5MiAxOTIiIHdpZHRoPSIyNHB4Ij48cmVjdCBmaWxsPSJub25lIiBoZWlnaHQ9IjE5MiIgd2lkdGg9IjE5MiIgeT0iMCIvPjxnPjxwYXRoIGQ9Ik02OS4yOSwxMDZjLTMuNDYsNS45Ny05LjkxLDEwLTE3LjI5LDEwYy0xMS4wMywwLTIwLTguOTctMjAtMjBzOC45Ny0yMCwyMC0yMCBjNy4zOCwwLDEzLjgzLDQuMDMsMTcuMjksMTBoMjUuNTVDOTAuMyw2Ni41NCw3Mi44Miw1Miw1Miw1MkMyNy43NCw1Miw4LDcxLjc0LDgsOTZzMTkuNzQsNDQsNDQsNDRjMjAuODIsMCwzOC4zLTE0LjU0LDQyLjg0LTM0IEg2OS4yOXoiIGZpbGw9IiM0Mjg1RjQiLz48cmVjdCBmaWxsPSIjRkJCQzA0IiBoZWlnaHQ9IjI0IiB3aWR0aD0iNDQiIHg9Ijk0IiB5PSI4NCIvPjxwYXRoIGQ9Ik05NC4zMiw4NEg2OHYwLjA1YzIuNSwzLjM0LDQsNy40Nyw0LDExLjk1cy0xLjUsOC42MS00LDExLjk1VjEwOGgyNi4zMiBjMS4wOC0zLjgyLDEuNjgtNy44NCwxLjY4LTEyUzk1LjQxLDg3LjgyLDk0LjMyLDg0eiIgZmlsbD0iI0VBNDMzNSIvPjxwYXRoIGQ9Ik0xODQsMTA2djI2aC0xNnYtOGMwLTQuNDItMy41OC04LTgtOHMtOCwzLjU4LTgsOHY4aC0xNnYtMjZIMTg0eiIgZmlsbD0iIzM0QTg1MyIvPjxyZWN0IGZpbGw9IiMxODgwMzgiIGhlaWdodD0iMjQiIHdpZHRoPSI0OCIgeD0iMTM2IiB5PSI4NCIvPjwvZz48L3N2Zz4=",
