@@ -8,7 +8,14 @@ import (
 //go:embed raw.json
 var RawMetadata []byte
 
-// See: https://fidoalliance.org/specs/mds/fido-metadata-service-v3.0-ps-20210518.html
+// This descriptor contains description in alternative languages.
+// Example:
+//
+// {
+//   "ru-RU": "Пример U2F аутентификатора от FIDO Alliance",
+//   "fr-FR": "Exemple U2F authenticator de FIDO Alliance"
+// }//
+// See: map[string]string
 
 // This enumeration describes the status of an authenticator model as identified by its AAID/AAGUID or attestationCertificateKeyIdentifiers and potentially some additional information (such as a specific attestation key).
 type AuthenticatorStatus string
@@ -111,8 +118,14 @@ type StatusReport struct {
 	CertificationRequirementsVersion *string `json:"certificationRequirementsVersion"`
 }
 
-type AlternativeDescription struct {
-}
+// This descriptor contains description in alternative languages.
+// Example:
+//
+//	{
+//	  "ru-RU": "Пример U2F аутентификатора от FIDO Alliance",
+//	  "fr-FR": "Exemple U2F authenticator de FIDO Alliance"
+//	}
+type AlternativeDescription map[string]string
 
 type MetadataStatement struct {
 	// The legalHeader, which must be in each Metadata Statement, is an indication of the acceptance of the relevant legal agreement for using the MDS.
