@@ -26,3 +26,7 @@ The data are obtained from [FIDO Metadata Service](https://fidoalliance.org/spec
 ## Glossary
 
 An **AAGUID** (Authenticator Attestation Global Unique Identifier) is an identifier for FIDO2 security keys.
+
+## Resources
+
+- [Determine the passkey provider with AAGUID](https://web.dev/articles/webauthn-aaguid) guide by Google
