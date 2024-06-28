@@ -2,7 +2,6 @@ package aaguids
 
 import (
 	_ "embed"
-	"time"
 )
 
 //go:embed raw.json
@@ -143,7 +142,7 @@ type MetadataStatement struct {
 	// A human-readable, short description of the authenticator, in English.
 	Description string
 	// A list of human-readable short descriptions of the authenticator in different languages.
-	AlternativeDescriptions []AlternativeDescription `json:"alternativeDescriptions"`
+	AlternativeDescriptions AlternativeDescription `json:"alternativeDescriptions"`
 	// Earliest (i.e. lowest) trustworthy authenticatorVersion meeting the requirements specified in this metadata statement.
 	// Adding new StatusReport entries with status UPDATE_AVAILABLE to the metadata BLOB object [FIDOMetadataService] MUST also change this authenticatorVersion if the update fixes severe security issues, e.g. the ones reported by preceding StatusReport entries with status code USER_VERIFICATION_BYPASS,ATTESTATION_KEY_COMPROMISE,USER_KEY_REMOTE_COMPROMISE,USER_KEY_PHYSICAL_COMPROMISE,REVOKED.
 	// It is RECOMMENDED to assume increased risk if this version is higher (newer) than the firmware version present in an authenticator. For example, if a StatusReport entry with status USER_VERIFICATION_BYPASS or USER_KEY_REMOTE_COMPROMISE precedes the UPDATE_AVAILABLE entry, than any firmware version lower (older) than the one specified in the metadata statement is assumed to be vulnerable.
@@ -224,7 +223,7 @@ type Entry struct {
 	// An array of status reports applicable to this authenticator.
 	StatusReports []StatusReport `json:"statusReports"`
 	// ISO-8601 formatted date since when the status report array was set to the current value.
-	TimeOfLastStatusChange time.Time `json:"timeOfLastStatusChange"`
+	TimeOfLastStatusChange string `json:"timeOfLastStatusChange"`
 	// URL of a list of rogue (i.e. untrusted) individual authenticators.
 	RogueListURL string `json:"rogueListURL"`
 	// base64url(string[1..512])

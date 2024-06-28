@@ -6,18 +6,17 @@ import (
 	"fmt"
 	"net/http"
 	"os"
-	"time"
 
 	"github.com/lestrrat-go/jwx/v2/jws"
 
-	"github.com/sumup/aaguid-go"
+	aaguids "github.com/sumup/aaguid-go"
 )
 
 type Manifest struct {
-	LegalHeader string         `json:"legalHeader"`
-	No          int            `json:"no"`
-	NextUpdate  time.Time      `json:"nextUpdate"`
-	Entries     []aaguid.Entry `json:"entries"`
+	LegalHeader string          `json:"legalHeader"`
+	No          int             `json:"no"`
+	NextUpdate  string          `json:"nextUpdate"`
+	Entries     []aaguids.Entry `json:"entries"`
 }
 
 func main() {
